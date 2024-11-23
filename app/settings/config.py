@@ -26,22 +26,23 @@ class Settings(BaseSettings):
     TORTOISE_ORM: dict = {
         "connections": {
             # SQLite configuration
-            "sqlite": {
-                "engine": "tortoise.backends.sqlite",
-                "credentials": {"file_path": f"{BASE_DIR}/db.sqlite3"},  # Path to SQLite database file
-            },
+            # "sqlite": {
+            #     "engine": "tortoise.backends.sqlite",
+            #     "credentials": {"file_path": f"{BASE_DIR}/db.sqlite3"},  # Path to SQLite database file
+            # },
             # MySQL/MariaDB configuration
             # Install with: tortoise-orm[asyncmy]
-            # "mysql": {
-            #     "engine": "tortoise.backends.mysql",
-            #     "credentials": {
-            #         "host": "localhost",  # Database host address
-            #         "port": 3306,  # Database port
-            #         "user": "yourusername",  # Database username
-            #         "password": "yourpassword",  # Database password
-            #         "database": "yourdatabase",  # Database name
-            #     },
-            # },
+            "mysql": {
+                "engine": "tortoise.backends.mysql",
+                "credentials": {
+                    # "host": "112.124.101.127",  # Database host address
+                    "host": "localhost",  # Database host address
+                    "port": 3306,  # Database port
+                    "user": "dy_test",  # Database username
+                    "password": "dy_test",  # Database password
+                    "database": "dy_test",  # Database name
+                },
+            },
             # PostgreSQL configuration
             # Install with: tortoise-orm[asyncpg]
             # "postgres": {
@@ -82,7 +83,7 @@ class Settings(BaseSettings):
         "apps": {
             "models": {
                 "models": ["app.models", "aerich.models"],
-                "default_connection": "sqlite",
+                "default_connection": "mysql",
             },
         },
         "use_tz": False,  # Whether to use timezone-aware datetimes

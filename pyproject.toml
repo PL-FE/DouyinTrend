@@ -25,6 +25,9 @@ setuptools = "^70.0.0"
 uvicorn = "^0.30.1"
 h11 = "^0.14.0"
 aerich = "^0.7.2"
+aiomysql = "^0.2.0"
+requests = "^2.32.3"
+pandas = "^2.2.3"
 
 [tool.black]
 line-length = 120
