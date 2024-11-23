@@ -41,6 +41,7 @@ class Settings(BaseSettings):
                     "user": "dy_test",  # Database username
                     "password": "dy_test",  # Database password
                     "database": "dy_test",  # Database name
+                    "charset": "utf8mb4",  # 确保这一行存在
                 },
             },
             # PostgreSQL configuration

@@ -9,11 +9,13 @@ from .depts import depts_router
 from .menus import menus_router
 from .roles import roles_router
 from .users import users_router
+from .data import data_router
 
 v1_router = APIRouter()
 
 v1_router.include_router(base_router, prefix="/base")
 v1_router.include_router(users_router, prefix="/user", dependencies=[DependPermisson])
+v1_router.include_router(data_router, prefix="/data", dependencies=[DependPermisson])
 v1_router.include_router(roles_router, prefix="/role", dependencies=[DependPermisson])
 v1_router.include_router(menus_router, prefix="/menu", dependencies=[DependPermisson])
 v1_router.include_router(apis_router, prefix="/api", dependencies=[DependPermisson])
