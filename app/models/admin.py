@@ -109,3 +109,4 @@ class DyVideoModel(BaseModel, TimestampMixin):
 
     class Meta:
         table = "dyvideo"
+        ordering = ["-publish_time"]  # 按 publish_time 降序排序

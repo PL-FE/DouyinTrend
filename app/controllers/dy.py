@@ -13,7 +13,7 @@ class DyController(CRUDBase[DyVideoModel, DyVideoCreate, DyVideoUpdate]):
 
     async def run_task(self, urls, cookie):
         douyinVideo = DouyinVideo()
-        data = douyinVideo.inits(urls, cookie)
+        data = await douyinVideo.inits(urls, cookie)
         print(data)
         await self.bulk_update_or_create(data)
 
@@ -37,7 +37,7 @@ class DyController(CRUDBase[DyVideoModel, DyVideoCreate, DyVideoUpdate]):
             # 执行新增操作
             await self.model.bulk_create([
                 self.model(**video) for video in new_videos
-            ], skip_duplicates=True)  # skip_duplicates=True 可以避免重复的 primary key 错误
+            ])
 
         # 执行更新操作
         if update_videos:

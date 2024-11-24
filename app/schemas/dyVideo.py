@@ -34,7 +34,7 @@ class claw_video_dy(BaseModel):
 
 class DyVideoCreate(BaseModel):
     video_id: int = Field(example='视频id')
-    dy_user_id: int = Field(example='抖音用户id')
+    dy_user_id: str = Field(example='抖音用户id')
     name: str = Field(example='博主名称')
     video_url: str = Field(example='视频url')
     download_url: str = Field(example='下载url')
