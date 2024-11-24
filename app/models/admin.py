@@ -86,12 +86,14 @@ class AuditLog(BaseModel, TimestampMixin):
     status = fields.IntField(default=-1, description="状态码", index=True)
     response_time = fields.IntField(default=0, description="响应时间(单位ms)", index=True)
 
+
 class DyVideoModel(BaseModel, TimestampMixin):
-    video_id = fields.BigIntField(description="视频id", unique=True,)
+    video_id = fields.BigIntField(description="视频id", unique=True, )
     name = fields.CharField(max_length=255, description="博主")
+    dy_user_id = fields.CharField(max_length=255, description="抖音用户id")
     video_url = fields.CharField(max_length=500, description="视频URL")
     download_url = fields.CharField(max_length=500, null=True, description="下载URL")
-    title = fields.CharField(max_length=255,null=True, description="标题")
+    title = fields.CharField(max_length=255, null=True, description="标题")
     tags = fields.CharField(max_length=255, null=True, description="视频标签")
     type = fields.CharField(max_length=50, null=True, description="类型")
     comment_count = fields.IntField(default=0, description="评论数")
