@@ -1,17 +1,17 @@
-from datetime import datetime
 from typing import List
 
 from app.core.crud import CRUDBase
 from app.models.admin import DyVideoModel
 from app.schemas.dyVideo import DyVideoCreate, DyVideoUpdate
 from app.spiders.dy_video_claw import DouyinVideo
+from app.spiders.dy_comments_claw.main import main as dy_comments_claw_task
 
 
 class DyController(CRUDBase[DyVideoModel, DyVideoCreate, DyVideoUpdate]):
     def __init__(self):
         super().__init__(model=DyVideoModel)
 
-    async def run_task(self, urls, cookie):
+    async def run_video_task(self, urls, cookie):
         douyinVideo = DouyinVideo()
         data = await douyinVideo.inits(urls, cookie)
         print(data)
@@ -55,6 +55,13 @@ class DyController(CRUDBase[DyVideoModel, DyVideoCreate, DyVideoUpdate]):
             await self.model.bulk_update(update_objects,
                                          fields=["comment_count", "share_count", "like_count", "favorite_count",
                                                  'dy_user_id'])
+
+    async def run_comments_task(self, video_ids, cookie):
+        all_data = []
+        for video_id in video_ids:
+            data = await dy_comments_claw_task(video_id, cookie)
+            all_data.append(data)
+        print(all_data)
 
 
 dy_controller = DyController()

@@ -110,3 +110,20 @@ class DyVideoModel(BaseModel, TimestampMixin):
     class Meta:
         table = "dyvideo"
         ordering = ["-publish_time"]  # 按 publish_time 降序排序
+
+
+class DyCommentModel(BaseModel, TimestampMixin):
+    comment_id = fields.BigIntField(unique=True, description="评论ID")
+    content = fields.TextField(description="评论内容")
+    image_url = fields.CharField(max_length=500, null=True, description="评论图片")
+    digg_count = fields.IntField(default=0, description="点赞数")
+    comment_time = fields.DatetimeField(description="评论时间")
+    user_nickname = fields.CharField(max_length=100, description="用户昵称")
+    user_homepage_link = fields.CharField(max_length=255, description="用户主页链接")
+    dy_user_id = fields.CharField(max_length=100, null=True, description="用户抖音号")
+    ip_location = fields.CharField(max_length=100, default='未知', description="ip归属")
+    reply_comment_id = fields.BigIntField(null=True, description="回复的评论ID")
+
+    class Meta:
+        table = "dycomment"
+        ordering = ["-comment_time"]  # 按评论时间降序排序
